@@ -44,6 +44,11 @@
              rdfs:subClassOf <http://www.kwh-ontology/ml40#HandheldDevice> .
 
 
+###  http://www.kwh-ontology/fml40#Camera
+:Camera rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.kwh-ontology/ml40#Sensor> .
+
+
 ###  http://www.kwh-ontology/fml40#Chainsaw
 :Chainsaw rdf:type owl:Class ;
           rdfs:subClassOf <http://www.kwh-ontology/ml40#HandheldDevice> .
