@@ -241,6 +241,12 @@ ml40:Sensor rdfs:label "" .
 #    Individuals
 #################################################################
 
+###  http://www.kwh-ontology/fml40#Camera_RPI_02
+fml40:Camera_RPI_02 rdf:type owl:NamedIndividual ,
+                             fml40:Camera ;
+                    rdfs:label "analog camera"^^xsd:string .
+
+
 ###  http://www.kwh-ontology/fml40#Camera_RPi_01
 fml40:Camera_RPi_01 rdf:type owl:NamedIndividual ,
                              fml40:Camera ;
@@ -258,6 +264,13 @@ fml40:RaspberryPi_01 rdf:type owl:NamedIndividual ,
                      fml40:EDittoId "s3:iuniqueidentifier"^^xsd:string ;
                      fml40:Endpoint "https://myserver.com" ;
                      rdfs:label "RaspberryPi model b4"^^xsd:string .
+
+
+###  http://www.kwh-ontology/fml40#RaspberryPi_02
+fml40:RaspberryPi_02 rdf:type owl:NamedIndividual ,
+                              ml40:Device ;
+                     ml40:hasSensor fml40:Camera_RPI_02 ;
+                     rdfs:label "RaspberryPI different model"^^xsd:string .
 
 
 ###  http://www.kwh-ontology/fml40#TR_Sensor_RPI_01
