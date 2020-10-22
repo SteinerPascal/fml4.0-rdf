@@ -3,36 +3,50 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ml40: <http://www.kwh-ontology/ml40#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix fml40: <http://www.kwh-ontology/fml40#> .
 @base <http://www.kwh-ontology/fml40#> .
 
 <http://www.kwh-ontology/fml40#> rdf:type owl:Ontology ;
-                                  owl:imports <http://www.kwh-ontology/ml40#> .
+                                  owl:imports ml40: .
 
 #################################################################
 #    Object Properties
 #################################################################
 
 ###  http://www.kwh-ontology/fml40#hasLocation
-:hasLocation rdf:type owl:ObjectProperty ;
-             rdfs:domain <http://www.kwh-ontology/ml40#Location> ;
-             rdfs:range <http://www.kwh-ontology/ml40#Machine> .
+fml40:hasLocation rdf:type owl:ObjectProperty ;
+                  rdfs:domain ml40:Location ;
+                  rdfs:range ml40:Machine .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
+###  http://www.kwh-ontology/fml40#EDittoId
+fml40:EDittoId rdf:type owl:DatatypeProperty ;
+               rdfs:domain ml40:DT ;
+               rdfs:range xsd:string .
+
+
+###  http://www.kwh-ontology/fml40#Endpoint
+fml40:Endpoint rdf:type owl:DatatypeProperty ;
+               rdfs:domain ml40:Device ;
+               rdfs:range xsd:string .
+
+
 ###  http://www.kwh-ontology/fml40#Latitude
-:Latitude rdf:type owl:DatatypeProperty ;
-          rdfs:domain <http://www.kwh-ontology/ml40#Location> ;
-          rdfs:range xsd:double .
+fml40:Latitude rdf:type owl:DatatypeProperty ;
+               rdfs:domain ml40:Location ;
+               rdfs:range xsd:double .
 
 
 ###  http://www.kwh-ontology/fml40#Longitude
-:Longitude rdf:type owl:DatatypeProperty ;
-           rdfs:domain <http://www.kwh-ontology/ml40#Location> ;
-           rdfs:range xsd:double .
+fml40:Longitude rdf:type owl:DatatypeProperty ;
+                rdfs:domain ml40:Location ;
+                rdfs:range xsd:double .
 
 
 #################################################################
@@ -40,189 +54,229 @@
 #################################################################
 
 ###  http://www.kwh-ontology/fml40#Brushcutter
-:Brushcutter rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.kwh-ontology/ml40#HandheldDevice> .
+fml40:Brushcutter rdf:type owl:Class ;
+                  rdfs:subClassOf ml40:HandheldDevice .
 
 
 ###  http://www.kwh-ontology/fml40#Camera
-:Camera rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.kwh-ontology/ml40#Sensor> .
+fml40:Camera rdf:type owl:Class ;
+             rdfs:subClassOf ml40:Sensor .
 
 
 ###  http://www.kwh-ontology/fml40#Chainsaw
-:Chainsaw rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.kwh-ontology/ml40#HandheldDevice> .
+fml40:Chainsaw rdf:type owl:Class ;
+               rdfs:subClassOf ml40:HandheldDevice .
 
 
 ###  http://www.kwh-ontology/fml40#Forest
-:Forest rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.kwh-ontology/ml40#DT> .
+fml40:Forest rdf:type owl:Class ;
+             rdfs:subClassOf ml40:DT .
 
 
 ###  http://www.kwh-ontology/fml40#ForestEnterprise
-:ForestEnterprise rdf:type owl:Class ;
-                  rdfs:subClassOf <http://www.kwh-ontology/ml40#Site> .
+fml40:ForestEnterprise rdf:type owl:Class ;
+                       rdfs:subClassOf ml40:Site .
 
 
 ###  http://www.kwh-ontology/fml40#ForestMachine
-:ForestMachine rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.kwh-ontology/ml40#Machine> .
+fml40:ForestMachine rdf:type owl:Class ;
+                    rdfs:subClassOf ml40:Machine .
 
 
 ###  http://www.kwh-ontology/fml40#ForestOwner
-:ForestOwner rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.kwh-ontology/ml40#Person> .
+fml40:ForestOwner rdf:type owl:Class ;
+                  rdfs:subClassOf ml40:Person .
 
 
 ###  http://www.kwh-ontology/fml40#ForestRoad
-:ForestRoad rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.kwh-ontology/ml40#Way> .
+fml40:ForestRoad rdf:type owl:Class ;
+                 rdfs:subClassOf ml40:Way .
 
 
 ###  http://www.kwh-ontology/fml40#ForestSegment
-:ForestSegment rdf:type owl:Class ;
-               rdfs:subClassOf :Forest .
+fml40:ForestSegment rdf:type owl:Class ;
+                    rdfs:subClassOf fml40:Forest .
 
 
 ###  http://www.kwh-ontology/fml40#ForestWorker
-:ForestWorker rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.kwh-ontology/ml40#Person> .
+fml40:ForestWorker rdf:type owl:Class ;
+                   rdfs:subClassOf ml40:Person .
 
 
 ###  http://www.kwh-ontology/fml40#Forwarder
-:Forwarder rdf:type owl:Class ;
-           rdfs:subClassOf :ForestMachine .
+fml40:Forwarder rdf:type owl:Class ;
+                rdfs:subClassOf fml40:ForestMachine .
 
 
 ###  http://www.kwh-ontology/fml40#Grabber
-:Grabber rdf:type owl:Class ;
-         rdfs:subClassOf <http://www.kwh-ontology/ml40#Part> .
+fml40:Grabber rdf:type owl:Class ;
+              rdfs:subClassOf ml40:Part .
 
 
 ###  http://www.kwh-ontology/fml40#Harvester
-:Harvester rdf:type owl:Class ;
-           rdfs:subClassOf :ForestMachine .
+fml40:Harvester rdf:type owl:Class ;
+                rdfs:subClassOf fml40:ForestMachine .
 
 
 ###  http://www.kwh-ontology/fml40#HarvestingHead
-:HarvestingHead rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.kwh-ontology/ml40#Part> .
+fml40:HarvestingHead rdf:type owl:Class ;
+                     rdfs:subClassOf ml40:Part .
 
 
 ###  http://www.kwh-ontology/fml40#Hauler
-:Hauler rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.kwh-ontology/ml40#Site> .
+fml40:Hauler rdf:type owl:Class ;
+             rdfs:subClassOf ml40:Site .
 
 
 ###  http://www.kwh-ontology/fml40#LogLoadingArea
-:LogLoadingArea rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.kwh-ontology/ml40#Part> .
+fml40:LogLoadingArea rdf:type owl:Class ;
+                     rdfs:subClassOf ml40:Part .
 
 
 ###  http://www.kwh-ontology/fml40#LogTruck
-:LogTruck rdf:type owl:Class ;
-          rdfs:subClassOf :ForestMachine .
+fml40:LogTruck rdf:type owl:Class ;
+               rdfs:subClassOf fml40:ForestMachine .
 
 
 ###  http://www.kwh-ontology/fml40#Mil
-:Mil rdf:type owl:Class ;
-     rdfs:subClassOf <http://www.kwh-ontology/ml40#Site> .
+fml40:Mil rdf:type owl:Class ;
+          rdfs:subClassOf ml40:Site .
 
 
 ###  http://www.kwh-ontology/fml40#MiniTractor
-:MiniTractor rdf:type owl:Class ;
-             rdfs:subClassOf :ForestMachine .
+fml40:MiniTractor rdf:type owl:Class ;
+                  rdfs:subClassOf fml40:ForestMachine .
 
 
 ###  http://www.kwh-ontology/fml40#MiniTractorOperator
-:MiniTractorOperator rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.kwh-ontology/ml40#MachineOperator> .
+fml40:MiniTractorOperator rdf:type owl:Class ;
+                          rdfs:subClassOf ml40:MachineOperator .
 
 
 ###  http://www.kwh-ontology/fml40#Papermil
-:Papermil rdf:type owl:Class ;
-          rdfs:subClassOf :Mil .
+fml40:Papermil rdf:type owl:Class ;
+               rdfs:subClassOf fml40:Mil .
 
 
 ###  http://www.kwh-ontology/fml40#Saw
-:Saw rdf:type owl:Class ;
-     rdfs:subClassOf <http://www.kwh-ontology/ml40#Part> .
+fml40:Saw rdf:type owl:Class ;
+          rdfs:subClassOf ml40:Part .
 
 
 ###  http://www.kwh-ontology/fml40#Sawmil
-:Sawmil rdf:type owl:Class ;
-        rdfs:subClassOf :Mil .
+fml40:Sawmil rdf:type owl:Class ;
+             rdfs:subClassOf fml40:Mil .
 
 
 ###  http://www.kwh-ontology/fml40#SkidTrail
-:SkidTrail rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.kwh-ontology/ml40#Way> .
+fml40:SkidTrail rdf:type owl:Class ;
+                rdfs:subClassOf ml40:Way .
 
 
 ###  http://www.kwh-ontology/fml40#Skidder
-:Skidder rdf:type owl:Class ;
-         rdfs:subClassOf :ForestMachine .
+fml40:Skidder rdf:type owl:Class ;
+              rdfs:subClassOf fml40:ForestMachine .
 
 
 ###  http://www.kwh-ontology/fml40#SkidderOperator
-:SkidderOperator rdf:type owl:Class ;
-                 rdfs:subClassOf <http://www.kwh-ontology/ml40#MachineOperator> .
+fml40:SkidderOperator rdf:type owl:Class ;
+                      rdfs:subClassOf ml40:MachineOperator .
 
 
 ###  http://www.kwh-ontology/fml40#StemSegment
-:StemSegment rdf:type owl:Class ;
-             rdfs:subClassOf :Wood .
+fml40:StemSegment rdf:type owl:Class ;
+                  rdfs:subClassOf fml40:Wood .
+
+
+###  http://www.kwh-ontology/fml40#TemperatureSensor
+fml40:TemperatureSensor rdf:type owl:Class ;
+                        rdfs:subClassOf ml40:Sensor .
 
 
 ###  http://www.kwh-ontology/fml40#Tree
-:Tree rdf:type owl:Class ;
-      rdfs:subClassOf :Forest .
+fml40:Tree rdf:type owl:Class ;
+           rdfs:subClassOf fml40:Forest .
 
 
 ###  http://www.kwh-ontology/fml40#VitalitySensor
-:VitalitySensor rdf:type owl:Class ;
-                rdfs:subClassOf <http://www.kwh-ontology/ml40#Sensor> .
+fml40:VitalitySensor rdf:type owl:Class ;
+                     rdfs:subClassOf ml40:Sensor .
 
 
 ###  http://www.kwh-ontology/fml40#WheelLoader
-:WheelLoader rdf:type owl:Class ;
-             rdfs:subClassOf :ForestMachine .
+fml40:WheelLoader rdf:type owl:Class ;
+                  rdfs:subClassOf fml40:ForestMachine .
 
 
 ###  http://www.kwh-ontology/fml40#Winch
-:Winch rdf:type owl:Class ;
-       rdfs:subClassOf <http://www.kwh-ontology/ml40#Part> .
+fml40:Winch rdf:type owl:Class ;
+            rdfs:subClassOf ml40:Part .
 
 
 ###  http://www.kwh-ontology/fml40#Wood
-:Wood rdf:type owl:Class ;
-      rdfs:subClassOf <http://www.kwh-ontology/ml40#DT> .
+fml40:Wood rdf:type owl:Class ;
+           rdfs:subClassOf ml40:DT .
 
 
 ###  http://www.kwh-ontology/fml40#WoodPile
-:WoodPile rdf:type owl:Class ;
-          rdfs:subClassOf :Wood .
+fml40:WoodPile rdf:type owl:Class ;
+               rdfs:subClassOf fml40:Wood .
+
+
+###  http://www.kwh-ontology/ml40#DT
+ml40:DT rdfs:label "" ,
+                   "DigitalTwin"^^xsd:string .
 
 
 ###  http://www.kwh-ontology/ml40#Machine
-<http://www.kwh-ontology/ml40#Machine> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.kwh-ontology/ml40#DT> .
+ml40:Machine rdf:type owl:Class ;
+             rdfs:subClassOf ml40:DT .
+
+
+###  http://www.kwh-ontology/ml40#Sensor
+ml40:Sensor rdfs:label "" .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
+###  http://www.kwh-ontology/fml40#Camera_RPi_01
+fml40:Camera_RPi_01 rdf:type owl:NamedIndividual ,
+                             fml40:Camera ;
+                    rdfs:comment "This Camera is mountet to a tree"^^xsd:string ;
+                    rdfs:label ""^^xsd:string ,
+                               "Digiatal camera"^^xsd:string ,
+                               "Digital Camera"^^xsd:string .
+
+
+###  http://www.kwh-ontology/fml40#RaspberryPi_01
+fml40:RaspberryPi_01 rdf:type owl:NamedIndividual ,
+                              ml40:Device ;
+                     ml40:hasSensor fml40:Camera_RPi_01 ,
+                                    fml40:TR_Sensor_RPI_01 ;
+                     fml40:EDittoId "s3:iuniqueidentifier"^^xsd:string ;
+                     fml40:Endpoint "https://myserver.com" ;
+                     rdfs:label "RaspberryPi model b4"^^xsd:string .
+
+
+###  http://www.kwh-ontology/fml40#TR_Sensor_RPI_01
+fml40:TR_Sensor_RPI_01 rdf:type owl:NamedIndividual ,
+                                fml40:TemperatureSensor ;
+                       rdfs:label "RoomtemperatureSensor"^^xsd:string .
+
+
 ###  http://www.kwh-ontology/fml40#myHarvester
-:myHarvester rdf:type owl:NamedIndividual ,
-                      :Harvester ;
-             rdfs:label "Testlabel for Harvester"^^xsd:string .
+fml40:myHarvester rdf:type owl:NamedIndividual ,
+                           fml40:Harvester ;
+                  rdfs:label "Harvester typ 4"^^xsd:string ,
+                             "Testlabel for Harvester"^^xsd:string .
 
 
 ###  http://www.kwh-ontology/ml40#myHarvesterLocation
-<http://www.kwh-ontology/ml40#myHarvesterLocation> :hasLocation <http://www.kwh-ontology/ml40#myHarvesterLocation> ;
-                                                   <http://www.kwh-ontology/ml40#Latitude> ""^^xsd:double ;
-                                                   <http://www.kwh-ontology/ml40#Longitude> ""^^xsd:double .
+ml40:myHarvesterLocation fml40:hasLocation ml40:myHarvesterLocation ;
+                         ml40:Latitude "6364.39394"^^xsd:double ;
+                         ml40:Longitude "7364.30283"^^xsd:double .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
