@@ -6,6 +6,7 @@
 @prefix ml40: <http://www.kwh-ontology/ml40#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix fml40: <http://www.kwh-ontology/fml40#> .
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
 @base <http://www.kwh-ontology/fml40#> .
 
 <http://www.kwh-ontology/fml40#> rdf:type owl:Ontology ;
