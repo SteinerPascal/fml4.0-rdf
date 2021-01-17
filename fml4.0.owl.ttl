@@ -1,16 +1,18 @@
 @prefix : <http://www.kwh-ontology/fml40#> .
+@prefix td: <http://mywotontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix ml40: <http://www.kwh-ontology/ml40#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix fml40: <http://www.kwh-ontology/fml40#> .
-@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
 @base <http://www.kwh-ontology/fml40#> .
 
 <http://www.kwh-ontology/fml40#> rdf:type owl:Ontology ;
-                                  owl:imports ml40: .
+                                  owl:imports td: ,
+                                              ml40: .
 
 #################################################################
 #    Annotation properties
@@ -24,6 +26,13 @@
 #    Object Properties
 #################################################################
 
+###  http://www.kwh-ontology/fml40#hasFeature
+fml40:hasFeature rdf:type owl:ObjectProperty ;
+                 rdfs:domain ml40:Role ;
+                 rdfs:range td:InteractionAffordances ,
+                            ml40:feature .
+
+
 ###  http://www.kwh-ontology/fml40#hasLocation
 fml40:hasLocation rdf:type owl:ObjectProperty ;
                   rdfs:domain ml40:Location ;
@@ -31,7 +40,7 @@ fml40:hasLocation rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.kwh-ontology/ml40#hasSensor
-ml40:hasSensor rdfs:range <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+ml40:hasSensor rdfs:range ssn:SensingDevice .
 
 
 #################################################################
@@ -69,22 +78,22 @@ fml40:Longitude rdf:type owl:DatatypeProperty ;
 #################################################################
 
 ###  http://purl.oclc.org/NET/ssnx/ssn#Device
-<http://purl.oclc.org/NET/ssnx/ssn#Device> rdf:type owl:Class .
+ssn:Device rdf:type owl:Class .
 
 
 ###  http://purl.oclc.org/NET/ssnx/ssn#SensingDevice
-<http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> rdf:type owl:Class ;
-                                                  rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Device> ,
-                                                                  <http://purl.oclc.org/NET/ssnx/ssn#Sensor> ;
-                                                  <http://purl.org/dc/elements/1.1/source> "http://www.w3.org/2005/Incubator/ssn/" ;
-                                                  rdfs:comment "A sensing device is a device that implements sensing." ;
-                                                  rdfs:isDefinedBy "http://purl.oclc.org/NET/ssnx/ssn" ;
-                                                  rdfs:label "Sensing Device" ;
-                                                  rdfs:seeAlso "http://www.w3.org/2005/Incubator/ssn/wiki/SSN_Sensor#Measuring" .
+ssn:SensingDevice rdf:type owl:Class ;
+                  rdfs:subClassOf ssn:Device ,
+                                  ssn:Sensor ;
+                  <http://purl.org/dc/elements/1.1/source> "http://www.w3.org/2005/Incubator/ssn/" ;
+                  rdfs:comment "A sensing device is a device that implements sensing." ;
+                  rdfs:isDefinedBy "http://purl.oclc.org/NET/ssnx/ssn" ;
+                  rdfs:label "Sensing Device" ;
+                  rdfs:seeAlso "http://www.w3.org/2005/Incubator/ssn/wiki/SSN_Sensor#Measuring" .
 
 
 ###  http://purl.oclc.org/NET/ssnx/ssn#Sensor
-<http://purl.oclc.org/NET/ssnx/ssn#Sensor> rdf:type owl:Class .
+ssn:Sensor rdf:type owl:Class .
 
 
 ###  http://www.kwh-ontology/fml40#Brushcutter
@@ -192,6 +201,11 @@ fml40:MotionSensor rdf:type owl:Class ;
                    rdfs:subClassOf ml40:Sensor .
 
 
+###  http://www.kwh-ontology/fml40#ObservingJob
+fml40:ObservingJob rdf:type owl:Class ;
+                   rdfs:subClassOf ml40:feature .
+
+
 ###  http://www.kwh-ontology/fml40#Papermil
 fml40:Papermil rdf:type owl:Class ;
                rdfs:subClassOf fml40:Mil .
@@ -295,12 +309,17 @@ fml40:Camera_1 rdf:type owl:NamedIndividual ,
 
 ###  http://www.kwh-ontology/fml40#Camera_2
 fml40:Camera_2 rdf:type owl:NamedIndividual ,
-                        <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+                        ssn:SensingDevice .
+
+
+###  http://www.kwh-ontology/fml40#Observe_With_PIR
+fml40:Observe_With_PIR rdf:type owl:NamedIndividual .
 
 
 ###  http://www.kwh-ontology/fml40#ObserverDevice_1
 fml40:ObserverDevice_1 rdf:type owl:NamedIndividual ,
                                 ml40:Device ;
+                       fml40:hasFeature fml40:Observe_With_PIR ;
                        ml40:hasSensor fml40:Camera_1 ;
                        fml40:EDittoId "DittoID:92928392"^^xsd:string ;
                        fml40:Endpoint "http://mypersonalendpoint.com"^^xsd:string .
@@ -309,6 +328,7 @@ fml40:ObserverDevice_1 rdf:type owl:NamedIndividual ,
 ###  http://www.kwh-ontology/fml40#ObserverDevice_2
 fml40:ObserverDevice_2 rdf:type owl:NamedIndividual ,
                                 ml40:Device ;
+                       fml40:hasFeature td:movementDetected ;
                        ml40:hasSensor fml40:Camera_2 ,
                                       fml40:PIR_Sensor ;
                        fml40:EDittoId "DittoID:2383829"^^xsd:string ;
