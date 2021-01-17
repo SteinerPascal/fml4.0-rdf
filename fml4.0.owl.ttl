@@ -302,6 +302,10 @@ ml40:Sensor rdfs:label "" .
 #    Individuals
 #################################################################
 
+###  http://mywotontology#movementDetected
+td:movementDetected rdf:type fml40:ObservingJob .
+
+
 ###  http://www.kwh-ontology/fml40#Camera_1
 fml40:Camera_1 rdf:type owl:NamedIndividual ,
                         ml40:Sensor .
